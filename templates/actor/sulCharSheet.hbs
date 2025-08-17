@@ -1,0 +1,55 @@
+
+<div class="sul__wrapper">
+    {{> "systems/stiffupperlip/templates/actor/header.hbs" }}
+
+    <nav class="sheet-tabs tabs sul__navbar">
+        <a data-group="sulSheet" data-action="tab" data-tab="stats">Characteristics</a>
+        <a data-group="sulSheet" data-action="tab" data-tab="bio">Biography & Equipment</a>
+    </nav>
+
+    <div class="tab {{tabs.stats.cssClass}}" name="stats" data-group="sulSheet" data-tab="stats">
+        <div class="sul__container">
+
+            <div class="sul__row">
+                <div class="sul__column">
+                    {{> "systems/stiffupperlip/templates/actor/aspects.hbs"}}
+                </div>
+                <div class="sul__column">
+                    {{> "systems/stiffupperlip/templates/actor/tracks.hbs"}}
+                </div>
+            </div>
+
+            <div class="sul__row">
+                {{> "systems/stiffupperlip/templates/actor/skills.hbs"}}
+            </div>
+
+            <div class="sul__row">
+                {{> "systems/stiffupperlip/templates/actor/stunts.hbs"}}
+            </div>
+        </div>
+    </div>
+    <div class="tab {{tabs.bio.cssClass}}" name="bio" data-group="sulSheet" data-tab="bio">
+        <div>
+            <span class="sul__panel-label">{{localize "SUL.biography"}}</span>
+            <prose-mirror name="system.biography" class="sul__bio" toggled="false" value="{{system.biography}}">
+                {{{system.biography}}}
+            </prose-mirror>
+        </div>
+
+        <div>
+            <span class="sul__panel-label">{{localize "SUL.notes"}}</span>
+            <prose-mirror name="system.notes" class="sul__notes" toggled="false" value="{{system.notes}}">
+                {{{system.notes}}}
+            </prose-mirror>
+        </div>
+
+        <div>
+            <span class="sul__panel-label">{{localize "SUL.equipment"}}</span>
+            <div class="sul__equipment-list container container-drop">
+                {{#each system.equipment as |item idx|}}
+                <span>{{item.name}}</span>
+                {{/each}}
+            </div>
+        </div>    
+    </div>
+</div>

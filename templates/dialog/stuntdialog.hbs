@@ -1,0 +1,44 @@
+
+<div>
+    <table>
+        <tr>
+            <td>{{localize "SUL.name"}}</td>
+            <td><input name="name" value="{{name}}"/></td>
+        </tr>
+        <tr>
+            <td>{{localize "SUL.skillsaffected"}}</td>
+            <td>
+                <select name="affectsSkill" multiple style="height: 50px;">
+                    {{selectOptions skills selected=affectsSkill localize=true}}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>{{localize "SUL.trackaffected"}}</td>
+            <td>
+                <select name="affectsTrack">
+                    {{selectOptions tracks selected=affectsTrack localize=true}}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>{{localize "SUL.modifier"}}</td>
+            <td><input name="modifier" value="{{modifier}}" /></td>
+        </tr>
+        <tr>
+            <td>{{localize "SUL.rollable"}}</td>
+            <td><input name="rollable" type="checkbox" {{#if (eq rollable true)}}checked{{/if}}/></td>
+        </tr>
+        <tr>
+            <td>{{localize "SUL.description"}}</td>
+            <td>
+                <prose-mirror name="description" toggled="false" value="{{description}}">
+                    {{{description}}}
+                </prose-mirror>
+            </td>
+        </tr>
+        <tr>
+            <td><button type="submit">{{localize "SUL.save"}}</button></td>
+        </tr>
+    </table>
+</div>

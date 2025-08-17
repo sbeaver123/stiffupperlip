@@ -1,0 +1,42 @@
+{
+    "id": "stiffupperlip",
+    "title": "Stiff Upper Lip",
+    "description": "The Stiff Upper Lip Fate-based system for FoundryVTT",
+    "authors": [
+        {"name": "Simon Beaver"}
+    ],
+    "version": "1.0.0",
+    "compatibility": {
+        "minimum": "13",
+        "verified": "13"
+    },
+    "esmodules": [
+        "esmodules/stiffupperlip.js",
+        "esmodules/sulDataModel.js"
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        }
+    ],
+    "styles": [
+        "styles/sul.css"
+    ],
+    "documentTypes": {
+        "Actor": {
+            "character": {},
+            "majornpc": {},
+            "minornpc": {}
+        },
+        "Item": {
+            "item": {},
+            "stunt": {},
+            "weapon": {}
+        }
+    },
+    "url": "https://github.com/sbeaver123/stiffupperlip",
+    "manifest": "https://github.com/sbeaver123/stiffupperlip/releases/download/v1.0.0/system.json",
+    "download": "https://github.com/sbeaver123/myriadsong/releases/download/v1.0.0/stiffupperlip.zip"
+}

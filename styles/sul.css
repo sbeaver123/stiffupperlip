@@ -1,0 +1,246 @@
+.sul__aspect-input {
+  font-family: 'Times New Roman', Times, serif;
+  width: 100%;
+  padding: 2px;
+  margin-bottom: 4px;
+}
+@font-face {
+  font-family: Alfredo-Regular;
+  src: url("../assets/Alfredo-Regular.ttf");
+}
+@font-face {
+  font-family: Emporium-Capitals;
+  src: url("../assets/EmporiumCapitals.ttf");
+}
+.sul__sheet .window-content {
+  background-color: antiquewhite;
+  padding: 0;
+}
+.sul__wrapper {
+  padding: 10px;
+}
+.sul__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.sul__column {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  width: 50%;
+}
+.sul__base-padding-5 {
+  padding-bottom: 5px;
+}
+.sul__base-padding-15 {
+  padding-bottom: 15px;
+}
+.sul__panel-label {
+  font-size: 1.5em;
+  font-family: Alfredo-Regular;
+  font-weight: bold;
+  margin: 0 0.5em 0 0;
+  vertical-align: center;
+}
+.sul__navbar {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+.sul__bio {
+  background-color: white;
+  min-height: 300px;
+  margin-bottom: 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.sul__notes {
+  background-color: white;
+  min-height: 80px;
+  margin-bottom: 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.sul__equipment-list {
+  border: 5px;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+.sul__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.3em;
+  /* TODO Get frame overlay working.
+    .sul__image {
+        background-image: url("../assets/oval-frame.png");
+        z-index: 2;
+    }*/
+}
+.sul__header .sul__avatar {
+  border: 0;
+  cursor: pointer;
+  width: auto;
+  height: 150px;
+  max-width: 200px;
+  object-fit: contain;
+  padding-right: 15px;
+  padding-bottom: 5px;
+}
+.sul__header .sul__hdrcentre {
+  flex-grow: 2;
+  font-family: 'Times New Roman', Times, serif;
+}
+.sul__header .sul__hdrcentre .sul__name {
+  width: 100px;
+  font-size: 1.3em;
+}
+.sul__header .sul__hdrcentre .sul__name-box {
+  font-size: 1.3em;
+  width: 100%;
+}
+.sul__header .sul__hdrcentre .sul__label {
+  margin: 10px;
+}
+.sul__header .sul__hdrcentre .sul__label100 {
+  width: 100px;
+  margin: 10px;
+}
+.sul__header .sul__hdrcentre .sul__hdrbox {
+  display: flex;
+  height: 30px;
+  width: 80px;
+  margin-right: 5px;
+}
+.sul__header .sul__hdrcentre .sul__hdrselect {
+  display: flex;
+  height: 30px;
+  width: 100px;
+  margin-right: 5px;
+}
+.sul__header .sul__logo {
+  display: flex;
+  flex-direction: column;
+  font-family: Alfredo-Regular;
+  font-weight: bold;
+  font-size: 2.5em;
+  text-align: center;
+  margin-left: 15px;
+  line-height: 1;
+}
+.sul__header .sul__logo .sul__logo-line {
+  padding: 0;
+  margin: 0;
+}
+.sul__item-sheet {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+.sul__item-header {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.1em;
+}
+.sul__item-img {
+  border: 0;
+  cursor: pointer;
+  width: auto;
+  height: 200px;
+  max-width: 300px;
+  object-fit: contain;
+  padding-right: 15px;
+  padding-bottom: 5px;
+}
+.sul__item-stats {
+  display: flex;
+  flex-direction: column;
+}
+.sul__item-tbl tr {
+  background-color: antiquewhite;
+}
+.sul__skill-list {
+  width: 100%;
+}
+.sul__skills-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 0.5em;
+  height: 200px;
+}
+.sul__skill-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+.sul__skill-label {
+  width: 90px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1em;
+  font-weight: bold;
+  font-style: normal;
+}
+.sul__skill-value {
+  width: 40px;
+  margin-right: 5px;
+}
+.sul__stunt-list {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 3px;
+}
+.sul__stunt-name {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 1.3em;
+  width: 150px;
+  margin-right: 10px;
+}
+.sul__stunt-desc {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1em;
+}
+.sul__stunt-icons {
+  margin-left: auto;
+}
+.sul__tracks {
+  display: flex;
+  flex-direction: column;
+}
+.sul__tracks .sul__track {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 30px;
+}
+.sul__tracks .sul__track .sul__track-label {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  width: 150px;
+}
+.sul__tracks .sul__track .sul__track-box {
+  display: flex;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 1px;
+  margin-left: 0;
+  border-radius: 0.2em;
+}
+.sul__tracks .sul__consequence-label {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  width: 100px;
+  margin-left: 2px;
+}
+.sul__tracks .sul__consequence-box {
+  width: 100%;
+}

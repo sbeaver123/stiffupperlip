@@ -1,0 +1,82 @@
+
+.sul__header {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.3em;
+
+    /* TODO Get frame overlay working.
+    .sul__image {
+        background-image: url("../assets/oval-frame.png");
+        z-index: 2;
+    }*/
+
+    .sul__avatar {
+        border: 0;
+        cursor: pointer;
+        width: auto;
+        height: 150px;
+        max-width: 200px;
+        object-fit: contain;
+        padding-right: 15px;
+        padding-bottom: 5px;
+    }
+
+    .sul__hdrcentre {
+        flex-grow: 2;
+        font-family: 'Times New Roman', Times, serif;
+
+        .sul__name {
+            width: 100px;
+            font-size: 1.3em;
+        }
+
+        .sul__name-box {
+            font-size: 1.3em;
+            width: 100%;
+        }
+
+        .sul__label {
+            //width: 150px;
+            margin: 10px;
+        }
+
+        .sul__label100 {
+            //display: flex;
+            width: 100px;
+            margin: 10px;
+        }
+
+        .sul__hdrbox {
+            display: flex;
+            height: 30px;
+            width: 80px;
+            margin-right: 5px;
+        }
+
+        .sul__hdrselect {
+            display: flex;
+            height: 30px;
+            width: 100px;
+            margin-right: 5px;
+        }
+    }
+
+    .sul__logo {
+        display: flex;
+        flex-direction: column;
+        font-family: Alfredo-Regular;
+        font-weight: bold;
+        font-size: 2.5em;
+        text-align: center;
+        margin-left: 15px;
+        line-height: 1;
+
+        .sul__logo-line {
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+}

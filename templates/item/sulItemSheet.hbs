@@ -1,0 +1,39 @@
+
+
+<div class="sul__item-sheet">
+
+    <div class="sul__item-header">
+
+        <div>
+            <img class="sul__item-img" id="image" data-edit="img" data-action="editImage" src="{{img}}"/></img>
+        </div>
+
+        <div>
+            <table class="sul__item-tbl">
+                <tr>
+                    <td>{{localize "SUL.name"}}</td>
+                    <td><input name="name" value="{{name}}" type="text"/></td>
+                </tr>
+                <!-- tr>
+                    <td>{{localize "SUL.skill"}}</td>
+                    <td>
+                        <select name="system.skill" style="height: 50px;">
+                            {{selectOptions combatskills selected=system.skill localize=true}}
+                        </select>
+                    </td>
+                </tr -->
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <span>{{localize "SUL.description"}}</span>
+        <prose-mirror name="system.description" toggled="true" value="{{system.description}}">
+            {{{system.description}}}
+        </prose-mirror>
+    </div>
+
+    <button type="submit">{{localize "SUL.save"}}</button>
+
+</div>

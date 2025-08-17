@@ -1,0 +1,108 @@
+{
+    "SUL": {
+        "accuracy": "Accuracy",
+        "addstunt": "Add Stunt",
+        "aspects": "Aspects",
+        "baseres": "Base Resources",
+        "biography": "Biography",
+        "class": {
+            "working": "Working",
+            "middle": "Middle",
+            "upper": "Upper"
+        },
+        "consequences": "Consequences",
+        "damage": "Damage",
+        "description": "Description",
+        "equipment": "Equipment",
+        "fatepts": "Fate Points",
+        "ladder": {
+            "tophole": "Top Hole!",
+            "wizard": "Wizard",
+            "thrilling": "Thrilling",
+            "spiffing": "Spiffing",
+            "oojah": "Oojah Cum Spiff",
+            "jollygood": "Jolly Good",
+            "fair": "Fair To Middling",
+            "average": "Distinctly Average",
+            "hohum": "Ho Hum",
+            "belowpar": "Below Par",
+            "ohdear": "Oh Dear"
+        },
+        "logo": {
+            "stiff": "Stiff",
+            "upper": "Upper",
+            "lip": "Lip"
+        },
+        "mild": "Mild",
+        "moderate": "Moderate",
+        "modifier": "Modifier",
+        "name": "Name",
+        "nationality": "Nationality",
+        "newstunt": "New Stunt",
+        "notes": "Notes",
+        "othermodifier": "Other Modifier",
+        "rollable": "Rollable",
+        "save": "Save",
+        "severe": "Severe",
+        "socialclass": "Social Class",
+        "skill": "Skill",
+        "skills": {
+            "academics": "Academics",
+            "alertness": "Alertness",
+            "arts": "Arts",
+            "athletics": "Athletics",
+            "charm": "Charm",
+            "commerce": "Commerce",
+            "contacts": "Contacts",
+            "crafts": "Crafts",
+            "crime": "Crime",
+            "deceive": "Deceive",
+            "drive": "Drive",
+            "empathy": "Empathy",
+            "equestrian": "Equestrian",
+            "etiquette": "Etiquette",
+            "fighting": "Fighting",
+            "fortitude": "Fortitude",
+            "investigate": "Investigate",
+            "languages": "Languages",
+            "occult": "Occult",
+            "pilot": "Pilot",
+            "physique": "Physique",
+            "presence": "Presence",
+            "sailing": "Sailing",
+            "science": "Science",
+            "shooting": "Shooting",
+            "stealth": "Stealth",
+            "survival": "Survival"
+        },
+        "skillsaffected": "Skills Affected",
+        "skillslabel": "Skills",
+        "stresstracks": "Stress Tracks",
+        "stunt": "Stunt",
+        "stunts": "Stunts",
+        "tagaspectfate": "Spend a Fate point to tag an aspect (+2).",
+        "tagaspectfree": "Tag an aspect using a free invocation (+2).",
+        "track": {
+            "composure": "Composure",
+            "health": "Health",
+            "rectitude": "Moral Rectitude",
+            "resources": "Resources"
+        },
+        "trackaffected": "Track Affected",
+        "tracks": "Tracks",
+        "weapon": "Weapon"
+    },
+
+    "TYPES": {
+        "Actor": {
+            "character": "Character",
+            "majornpc": "Major NPC",
+            "minornpc": "Minor NPC"
+        },
+        "Item": {
+            "item": "Item",
+            "stunt": "Stunt",
+            "weapon": "Weapon"
+        }
+    }
+}

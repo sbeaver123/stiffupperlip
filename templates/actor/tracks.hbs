@@ -1,0 +1,63 @@
+<div class="sul__tracks">
+    <span class="sul__panel-label">{{localize "SUL.stresstracks"}}</span>
+    <!-- Health Track -->
+    <div class="sul__track">
+        <div class="sul__track-label">{{localize "SUL.track.health"}}</div>
+        {{#times system.tracks.health.boxes}}
+            {{#if (lt @index system.tracks.health.filled)}}
+            <input name="health{{@index}}" type="checkbox" class="sul__track-box" checked=checked/>
+            {{else}}
+            <input name="health{{@index}}" type="checkbox" class="sul__track-box"/>
+            {{/if}}
+        {{/times}}
+    </div>
+    <!-- Composure Track -->
+    <div class="sul__track">
+        <div class="sul__track-label">{{localize "SUL.track.composure"}}</div>
+        {{#times system.tracks.composure.boxes}}
+            {{#if (lt @index system.tracks.composure.filled)}}
+            <input name="composure{{@index}}" type="checkbox" class="sul__track-box" checked="checked"/>
+            {{else}}
+            <input name="composure{{@index}}" type="checkbox" class="sul__track-box"/>
+            {{/if}}
+        {{/times}}
+    </div>
+    <!-- Moral Rectitude Track -->
+    <div class="sul__track">
+        <div class="sul__track-label">{{localize "SUL.track.rectitude"}}</div>
+        {{#times system.tracks.rectitude.boxes}}
+            {{#if (lt @index system.tracks.rectitude.filled)}}
+            <input name="rectitude{{@index}}" type="checkbox" class="sul__track-box" checked="checked"/>
+            {{else}}
+            <input name="rectitude{{@index}}" type="checkbox" class="sul__track-box"/>
+            {{/if}}
+        {{/times}}
+        <i id="rectitude" class="fas fa-dice"></i>
+    </div>
+    <!-- Resources Track -->
+    <div class="sul__track">
+        <div class="sul__track-label">{{localize "SUL.track.resources"}}</div>
+        {{#times system.tracks.resources.boxes}}
+            {{#if (lt @index system.tracks.resources.filled)}}
+            <input name="resources{{@index}}" type="checkbox" class="sul__track-box" checked="checked"/>
+            {{else}}
+            <input name="resources{{@index}}" type="checkbox" class="sul__track-box"/>
+            {{/if}}
+        {{/times}}
+        <i id="rectitude" class="fas fa-dice"></i>
+    </div>
+    <div style="height: 15px;"></div>
+    <span class="sul__panel-label">{{localize "SUL.consequences"}}</span>
+    <div class="sul__row sul__base-padding-5">
+        <span class="sul__consequence-label">{{localize "SUL.mild"}}</span>
+        <input class="sul__consequence-box" name="system.consequences.mild" value="{{system.consequences.mild}}"/>
+    </div>
+    <div class="sul__row sul__base-padding-5">
+        <span class="sul__consequence-label">{{localize "SUL.moderate"}}</span>
+        <input class="sul__consequence-box" name="system.consequences.moderate" value="{{system.consequences.moderate}}"/>
+    </div>
+    <div class="sul__row sul__base-padding-5">
+        <span class="sul__consequence-label">{{localize "SUL.severe"}}</span>
+        <input class="sul__consequence-box" name="system.consequences.severe" value="{{system.consequences.severe}}"/>
+    </div>
+</div>

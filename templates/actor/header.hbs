@@ -1,0 +1,34 @@
+    <div class="sul__header">
+        <div class="sul__image">
+            <img class="sul__avatar" id="avatar" data-edit="img" data-action="editImage" src="{{actor.img}}"/></img>
+        </div>
+        
+        <div class="sul__hdrcentre">
+            <div class="sul__row sul__base-padding-15">
+                <span class="sul__name">{{localize "SUL.name"}}</span>
+                <input name="name" class="sul__name-box" value="{{actor.name}}"/>
+            </div>
+            <div class="sul__row">
+                <span class="sul__label100">{{localize "SUL.socialclass"}}</span>
+                <!-- input name="system.socclass" class="sul__hdrbox" value="{{system.socclass}}"/ -->
+                <select name="system.socclass" class="sul__hdrselect">
+                    {{selectOptions classes selected=system.socclass localize=true}}
+                </select>
+                
+                <span class="sul__label">{{localize "SUL.baseres"}}</span>
+                <input name="system.baseres" readonly class="sul__hdrbox" value="{{system.baseres}}"/>
+            </div>    
+            <div class="sul__row">
+                <span class="sul__label100">{{localize "SUL.nationality"}}</span>
+                <input name="system.nationoption"/>
+                <span class="sul__label">{{localize "SUL.fatepts"}}</span>
+                <input style="width: 30px; background-color: white;" type="number" min="0" max="7" name="system.fatepoints" value="{{system.fatepoints}}"/>
+            </div>
+        </div>
+        
+        <div class="sul__logo">
+            <span class="sul__logo-line">{{localize "SUL.logo.stiff"}}</span>
+            <span class="sul__logo-line">{{localize "SUL.logo.upper"}}</span>
+            <span class="sul__logo-line">{{localize "SUL.logo.lip"}}</span>
+        </div>        
+    </div>

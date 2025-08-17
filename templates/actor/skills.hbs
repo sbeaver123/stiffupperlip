@@ -1,0 +1,13 @@
+
+<div class="sul__skill-list">
+    <span class="sul__panel-label">{{localize "SUL.skillslabel"}}</span>
+    <div class="sul__skills-body">
+        {{#each system.skills}}
+        <div class="sul__skill-item">
+            <span class="sul__skill-label">{{ localize this.label}}</span>
+            <input class="sul__skill-value" name="system.skills.{{@key}}.value" value="{{this.value}}"/>
+            <div id="{{@key}}" class="fas fa-dice sul__skill-roll"></div>
+        </div>
+        {{/each}}
+    </div>
+</div>
