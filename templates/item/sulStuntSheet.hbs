@@ -1,44 +1,51 @@
 
-<div>
-    <table>
+<div class="sul__item-sheet">
+    <table class="sul__item-tbl">
         <tr>
-            <td>{{localize "SUL.name"}}</td>
-            <td><input name="name" value="{{name}}"/></td>
+            <td class="sul__item-label">{{localize "SUL.name"}}</td>
+            <td><input name="name" value="{{name}}" type="text"/></td>
         </tr>
         <tr>
-            <td>{{localize "SUL.skillsaffected"}}</td>
+            <td class="sul__item-label">{{localize "SUL.skillsaffected"}}</td>
             <td>
-                <select name="affectsSkill" multiple style="height: 50px;">
-                    {{selectOptions skills selected=affectsSkill localize=true}}
+                <!-- select name="system.affectsSkill" multiple style="height: 50px;">
+                    {{selectOptions skills selected=system.affectsSkill localize=true}}
+                </select -->
+                <div class="sul__item-skills">
+                {{#each skills as |skill idx|}}
+                    <div>
+                        {{localize skill.label}} 
+                        <input name="{{idx}}" type="checkbox" class="sul__skill-check" {{#if skill.checked}}checked{{/if}}/>
+                    </div>
+                {{/each}}
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="sul__item-label">{{localize "SUL.trackaffected"}}</td>
+            <td>
+                <select name="system.affectsTrack">
+                    {{selectOptions tracks selected=system.affectsTrack localize=true}}
                 </select>
             </td>
         </tr>
         <tr>
-            <td>{{localize "SUL.trackaffected"}}</td>
-            <td>
-                <select name="affectsTrack">
-                    {{selectOptions tracks selected=affectsTrack localize=true}}
-                </select>
-            </td>
+            <td class="sul__item-label">{{localize "SUL.modifier"}}</td>
+            <td><input name="system.modifier" value="{{system.modifier}}" type="number" /></td>
         </tr>
         <tr>
-            <td>{{localize "SUL.modifier"}}</td>
-            <td><input name="modifier" value="{{modifier}}" /></td>
-        </tr>
-        <tr>
-            <td>{{localize "SUL.rollable"}}</td>
-            <td><input name="rollable" type="checkbox" {{#if (eq rollable true)}}checked{{/if}}/></td>
-        </tr>
-        <tr>
-            <td>{{localize "SUL.description"}}</td>
-            <td>
-                <prose-mirror name="description" toggled="false" value="{{description}}">
-                    {{{description}}}
-                </prose-mirror>
-            </td>
-        </tr>
-        <tr>
-            <td><button type="submit">{{localize "SUL.save"}}</button></td>
+            <td class="sul__item-label">{{localize "SUL.rollable"}}</td>
+            <td><input name="system.rollable" type="checkbox" {{#if (eq system.rollable true)}}checked{{/if}}/></td>
         </tr>
     </table>
+
+    <div>
+        <span class="sul__item-label">{{localize "SUL.description"}}</span>
+        <prose-mirror name="system.description" toggled="true" value="{{system.description}}">
+            {{{system.description}}}
+        </prose-mirror>
+    </div>
+
+    <button type="submit">{{localize "SUL.save"}}</button>
+
 </div>

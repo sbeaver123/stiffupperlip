@@ -2,36 +2,81 @@
 .sul__item-sheet {
     display: flex;
     flex-direction: column;
+    background-color: antiquewhite;
     margin: 10px;
-}
 
-.sul__item-header {
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 1.1em;
-}
+    .sul__item-header {
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1.1em;
+    }
 
-.sul__item-img {
-    border: 0;
-    cursor: pointer;
-    width: auto;
-    height: 200px;
-    max-width: 300px;
-    object-fit: contain;
-    padding-right: 15px;
-    padding-bottom: 5px;
-}
+    .sul__item-img {
+        border: 0;
+        cursor: pointer;
+        width: auto;
+        height: 200px;
+        max-width: 300px;
+        object-fit: contain;
+        padding-right: 15px;
+        padding-bottom: 5px;
+    }
 
-.sul__item-stats {
-    display: flex;
-    flex-direction: column;
-}
+    .sul__item-stats {
+        display: flex;
+        flex-direction: column;
+    }
 
-.sul__item-tbl {
+    .sul__item-tbl {
 
-    tr {
-        background-color: antiquewhite;
+        font-family: 'Times New Roman', Times, serif;
+
+        tr {
+            background-color: antiquewhite;
+        }
+    }
+
+    .sul__item-label {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 16px;
+    }
+
+    .sul__item-skills {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        margin: 0.5em;
+        height: 250px;
+    }
+
+    input[type=text] {
+        background-color: white;
+
+    }
+
+    input[type=number] {
+        background-color: white;
+        width: 30%;
+    }
+
+    /** Show up and down chevrons on number fields. */
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: textfield;
+        -moz-appearance: textfield;
+        appearance: textfield;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        opacity: 1;
+    }
+
+    select {
+        height: 32px;
+        background-color: white;
     }
 }

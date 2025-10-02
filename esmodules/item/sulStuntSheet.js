@@ -1,53 +1,55 @@
 import sulConstants from "../sulConstants.js";
 
-export default class sulStuntSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+export class sulStuntSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
 
-    constructor(actor, stunt, options) {
-        super();
-        this.actor = actor;
-        this.stunt = stunt;
-
-        /* If editing an existing stunt, record the existing key. */
-        if (options.key) {
-            this.key = options.key;
-        }
+    constructor(options = {}) {
+        super(options);
     }
 
     static DEFAULT_OPTIONS = {
-        position: {
-            "width":"auto",
-            "height": "auto",
+        "position": {
+            "width":"585",
+            "height": "760",
         },
-        tag: "form",
-        form: {
-            handler: StuntDialog.#onSubmit,
-            submitOnChange: false,
-            closeOnSubmit: true
+        "tag": "form",
+        "form": {
+            "submitOnChange": false,
+            "closeOnSubmit": true
         },
-        window: {
-            title: this.title,
-            icon: "fas fa=-book",
-            resizable:false
-        }
+        "window": {
+            "resizable": true
+        },
+        "classes": ["sul__sheet"]
     }
 
     static PARTS = {
-        form: {
-            "template": "systems/stiffupperlip/templates/dialog/stuntdialog.hbs"
+        "form": {
+            "template": "systems/stiffupperlip/templates/item/sulStuntSheet.hbs",
+            "scrollable": [".window-content", ".sul__item-sheet"]
         }
-    }
-
-    get title() {
-        return game.i18n.localize("SUL.stunt") + ": " + this.stunt.name;
     }
 
     async _prepareContext(options) {
 
-        const skills = sulConstants.getSkills();
+        const skillList = sulConstants.getSkills();
+
+        let skills = {};
+        for(let key in skillList) {
+            let skill = {
+                "label": skillList[key]
+            }
+            if (this.item.system.affectsSkills) {
+                if(this.item.system.affectsSkills.includes(key)) {
+                    skill["checked"] = true;
+                }
+            }
+            skills[key] = skill;
+        };
+
         const tracks = sulConstants.getTracks();
 
         const sheetData = {
-            ...this.stunt,
+            ...this.item,
             "skills": skills,
             "tracks": tracks
         }
@@ -55,30 +57,26 @@ export default class sulStuntSheet extends foundry.applications.api.HandlebarsAp
         return sheetData;
     }
 
-    static async #onSubmit (event, form, formDataExtended) {
+    async _onRender(context, options) {
+        const skillBoxes = this.element.querySelectorAll(".sul__skill-check");
+        skillBoxes.forEach(es => es?.addEventListener("click", event => this._checkSkill(event)));
+    }
 
-        const formData = formDataExtended.object;
-        let stunts = this.actor.system.stunts;
-        let stunt = {}
+    _checkSkill(event) {
+        const skill = event.target.name;
 
-        for(let prop in formData) {
-            stunt[prop] = formData[prop];
+        let affectsSkills = [];
+        if (this.item.system.affectsSkills) {
+            affectsSkills = this.item.system.affectsSkills;
         }
 
-        const key = sulConstants.makeHash(stunt.name);
-
-        /* If there's an existing key, we may need to delete the old version
-           if we've changed the name of the stunt. */
-        console.log(`Existing key ${this.key} New Key: ${key}`);
-        if (this.key) {
-            if (this.key !== key) {
-                delete stunts[this.key];
-            }
+        if (affectsSkills.includes(skill)) {
+            const idx = affectsSkills.indexOf(skill);
+            affectsSkills.splice(idx, 1);
+        } else {
+            affectsSkills.push(skill);
         }
-        
-        stunts[key] = stunt;
-        console.log(stunts);
 
-        await this.actor.update({["system.stunts"]: stunts});
+        this.item.update({["system.affectsSkills"]: affectsSkills});
     }
 }

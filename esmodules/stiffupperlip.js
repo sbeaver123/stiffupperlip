@@ -1,7 +1,8 @@
 
 import * as models from "./sulDataModel.js";
-import { sulCharacterSheet } from "./sulCharacterSheet.js";
+import { sulCharacterSheet } from "./actor/sulCharacterSheet.js";
 import { sulItemSheet } from "./item/sulItemSheet.js";
+import { sulStuntSheet} from "./item/sulStuntSheet.js";
 import { sulWeaponSheet } from "./item/sulWeaponSheet.js";
 
 Hooks.once("init", () => {
@@ -19,6 +20,7 @@ Hooks.once("init", () => {
 
     //foundry.documents.collections.Items.unregisterSheet("core", "sheets.ItemSheetV2");
     foundry.documents.collections.Items.registerSheet("stiffupperlip", sulItemSheet, {types: ["item"], makeDefault: true});
+    foundry.documents.collections.Items.registerSheet("stiffupperlip", sulStuntSheet, {types: ["stunt"], makeDefault: true});
     foundry.documents.collections.Items.registerSheet("stiffupperlip", sulWeaponSheet, {types: ["weapon"], makeDefault: true});
 });
 

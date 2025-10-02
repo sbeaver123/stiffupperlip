@@ -160,9 +160,30 @@ export class sulMajorNpc extends foundry.abstract.DataModel {
         return {
             "name": new fields.StringField({"nullable": false, "required": true, "initial": ""}),
             "aspects": new fields.ObjectField({"nullable": false, "required": true, "initial": {}}),
+            "stress": new fields.SchemaField({
+                "boxes": new fields.NumberField({required: true, integer: true, initial: 3}),
+                "filled": new fields.NumberField({required: true, integer: true, initial: 0}),
+            }),
             "skills": new fields.ObjectField({}),
-            "stunts": new fields.ObjectField({})
+            "stunts": new fields.ObjectField({}),
+            "equipment": new fields.ObjectField({}),
+            "description": new fields.HTMLField({})
         };
+    }
+}
+
+export class sulMinorNpc extends foundry.abstract.DataModel {
+    static defineSchema() {
+        return {
+            "name": new fields.StringField({"nullable": false, "required": true, "initial": ""}),
+            "rating": new fields.NumberField({required: true, integer: true, min: 0, max: 5, initial: 0}),
+            "stress": new fields.SchemaField({
+                "boxes": new fields.NumberField({required: true, integer: true, initial: 0}),
+                "filled": new fields.NumberField({required: true, integer: true, initial: 0}),
+            }),
+            "equipment": new fields.ObjectField({nullable: false, required: true, initial: {}}),
+            "description": new fields.HTMLField({})
+        }
     }
 }
 
@@ -180,8 +201,7 @@ export class sulStunt extends foundry.abstract.DataModel {
         return {
             "name": new fields.StringField({"nullable": false, "required": true, "initial": ""}),
             "description": new fields.HTMLField({"nullable": false, "required": true, "initial": ""}),
-            //"affectsSkill": new fields.ArrayField(new fields.StringField({"nullable": false, "required": true, "initial": ""})),
-            "affectsSkill": new fields.StringField({"nullable": false, "required": false, "initial": ""}),
+            "affectsSkills": new fields.ArrayField(new fields.StringField({"nullable": false, "required": true, "initial": ""})),
             "affectsTrack": new fields.StringField({"nullable": false, "required": false, "initial": ""}),
             "modifier": new fields.NumberField({"required": true, "integer": true, "initial": 0})
         };

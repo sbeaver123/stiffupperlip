@@ -2,14 +2,14 @@
     <div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%;">
         <span class="sul__panel-label">{{localize "SUL.stunts"}}</span><div class="fas fa-plus sul__stunt-add"></div>
     </div>
-    <div class="sul__stunt-list">
+    <div class="sul__stunt-list sul__drop-stunt">
     
         {{#each system.stunts as |stunt idx|}}
-        <div class="sul__row">
+        <div class="sul__stunt-row">
             <div class="sul__stunt-name">{{stunt.name}}</div>
-            <div class="sul__stunt-desc">{{{stunt.description}}}</div>
+            <div class="sul__stunt-desc">{{{stunt.system.description}}}</div>
             <div class="sul__stunt-icons">
-                {{#if (eq stunt.rollable true)}}
+                {{#if (eq stunt.system.rollable true)}}
                 <i id="{{idx}}" class="fas fa-dice sul__stunt-roll"></i>
                 &nbsp;&nbsp;
                 {{/if}}

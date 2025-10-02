@@ -135,16 +135,18 @@
 .sul__item-sheet {
   display: flex;
   flex-direction: column;
+  background-color: antiquewhite;
   margin: 10px;
+  /** Show up and down chevrons on number fields. */
 }
-.sul__item-header {
+.sul__item-sheet .sul__item-header {
   display: flex;
   flex-direction: row;
   padding: 10px;
   font-family: 'Times New Roman', Times, serif;
   font-size: 1.1em;
 }
-.sul__item-img {
+.sul__item-sheet .sul__item-img {
   border: 0;
   cursor: pointer;
   width: auto;
@@ -154,12 +156,58 @@
   padding-right: 15px;
   padding-bottom: 5px;
 }
-.sul__item-stats {
+.sul__item-sheet .sul__item-stats {
   display: flex;
   flex-direction: column;
 }
-.sul__item-tbl tr {
+.sul__item-sheet .sul__item-tbl {
+  font-family: 'Times New Roman', Times, serif;
+}
+.sul__item-sheet .sul__item-tbl tr {
   background-color: antiquewhite;
+}
+.sul__item-sheet .sul__item-label {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+}
+.sul__item-sheet .sul__item-skills {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 0.5em;
+  height: 250px;
+}
+.sul__item-sheet input[type=text] {
+  background-color: white;
+}
+.sul__item-sheet input[type=number] {
+  background-color: white;
+  width: 30%;
+}
+.sul__item-sheet input[type=number]::-webkit-inner-spin-button,
+.sul__item-sheet input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  opacity: 1;
+}
+.sul__item-sheet select {
+  height: 32px;
+  background-color: white;
+}
+.sul__roll-sheet .window-content {
+  background-color: antiquewhite;
+}
+.sul__roll-sheet .window-content input[type=number] {
+  width: 35px;
+}
+.chat-message .message-header {
+  background-color: #FFF;
 }
 .sul__skill-list {
   width: 100%;
@@ -194,6 +242,14 @@
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 3px;
+}
+.sul__stunt-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid grey;
+  padding-bottom: 2px;
+  margin-bottom: 10px;
 }
 .sul__stunt-name {
   font-family: 'Times New Roman', Times, serif;

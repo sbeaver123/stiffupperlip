@@ -51,6 +51,7 @@ export default class sulConstants {
 
     static getTracks() {
         return {
+            "none": "SUL.track.none",
             "health": "SUL.track.health",
             "composure": "SUL.track.composure",
             "rectitude": "SUL.track.rectitude",

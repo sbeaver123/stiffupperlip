@@ -1,0 +1,29 @@
+
+<div class="sul__wrapper">
+    <div>
+        <div class="sul__row sul__base-padding-15">
+            <span class="sul__name">{{localize "SUL.name"}}</span>
+            <input name="name" class="sul__name-box" value="{{actor.name}}"/>
+        </div>
+    </div>
+
+    <div class="sul__row">
+        <span class="sul__skill-label">{{ localize this.label}}</span>
+        <input class="sul__skill-value" name="system.rating.{{@key}}.value" value="{{this.value}}"/>
+        <div id="{{@key}}" class="fas fa-dice sul__skill-roll"></div>
+    </div>
+
+    <div class="sul__row">
+        <div class="sul__track">
+        <div class="sul__track-label">{{localize "SUL.track.health"}}</div>
+        {{#times system.tracks.health.boxes}}
+            {{#if (lt @index system.tracks.health.filled)}}
+            <input name="health{{@index}}" type="checkbox" class="sul__track-box" checked=checked/>
+            {{else}}
+            <input name="health{{@index}}" type="checkbox" class="sul__track-box"/>
+            {{/if}}
+        {{/times}}
+    </div>
+    </div>
+
+</div>

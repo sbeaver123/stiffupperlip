@@ -1,8 +1,7 @@
 
-import sulRollDialog from "./sulRollDialog.js";
-import StuntDialog from "./StuntDialog.js";
-import { sulStunt } from "./sulDataModel.js";
-import sulConstants from "./sulConstants.js";
+import sulRollDialog from "../sulRollDialog.js";
+import { sulStunt } from "../sulDataModel.js";
+import sulConstants from "../sulConstants.js";
 
 export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
 
@@ -26,21 +25,21 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
         "window": {
             "resizable": true
         },
-        "classes": ['sul__sheet'],
+        "classes": ["sul__sheet"],
         "dragDrop": [{ dragSelector: '[data-drag]', dropSelector: null }]
     }
 
     static PARTS = {
-        base: {
-            template: "systems/stiffupperlip/templates/actor/sulCharSheet.hbs",
-            templates: [
+        "base": {
+            "template": "systems/stiffupperlip/templates/actor/sulCharSheet.hbs",
+            "templates": [
                 "systems/stiffupperlip/templates/actor/header.hbs",
                 "systems/stiffupperlip/templates/actor/aspects.hbs",
                 "systems/stiffupperlip/templates/actor/tracks.hbs",
                 "systems/stiffupperlip/templates/actor/skills.hbs",
                 "systems/stiffupperlip/templates/actor/stunts.hbs"
             ],
-            scrollable: [".window-content", ".sul__wrapper"]
+            "scrollable": [".window-content", ".sul__wrapper"]
         }
     }
  
@@ -108,22 +107,13 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
 
         const skillrolls = this.element.querySelectorAll(".sul__skill-roll");
         skillrolls.forEach(sr => sr?.addEventListener("click", event => this.skillRoll(event)));
-    }
 
-    addStunt() {
 
-        let newstunt = new sulStunt({
-            "name": game.i18n.localize("SUL.newstunt"),
-            "description": "",
-            "affectsSkill": [],
-            "affectsTrack": "",
-            "modifier": 0
+        const trackboxes = this.element.querySelectorAll(".sul__track-box");
+        trackboxes.forEach(tb => tb?.addEventListener("click", event => this.checkTrack(event)));
 
-        });
-        const options = {"new": true};
-
-        const dialog = new StuntDialog(this.actor, newstunt, options);
-        dialog.render(true);
+        const trackrolls = this.element.querySelectorAll(".sul__track-roll");
+        trackrolls.forEach(tr => tr?.addEventListener("click", event => this.trackRoll(event)));
     }
 
     async changeSocialClass(event) {
@@ -142,29 +132,66 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
         await this.actor.update({"system.baseres": bres});
     }
 
+    /** Stunt Functions. */
+    async addStunt() {
+
+        let newstunt = {
+            "name": game.i18n.localize("SUL.newstunt"),
+            "type": "stunt"
+
+        };
+        
+        console.log(newstunt);
+
+        let stunt = await Item.implementation.create(newstunt);
+        console.log(stunt);
+        stunt.sheet.render(true);
+    }
+
     async deleteStunt(event) {
 
         const stuntKey = event.target.id;
         await this.actor.update({[`system.stunts.-=${stuntKey}`]: null});
     }
 
-    editStunt(event) {
+    async editStunt(event) {
 
+        console.log(event);
         const stunts = this.actor.system.stunts;
         const stuntKey = event.target.id;
-        const stunt = stunts[stuntKey];
+        //let stunt = stunts[stuntKey];
+        console.log(stuntKey);
+        let stunt = await fromUuid("Item." + stuntKey);
 
-        const options = {
-            "key": stuntKey
-        }
-        const dialog = new StuntDialog(this.actor, stunt, options);
-        dialog.render(true);
+        console.log(stunt);
+        stunt.sheet.render(true);
     }
 
     skillRoll(event) {
         const skill = event.target.id;
         const value = this.actor.system.skills[skill].value;
         this._showDiceRollDialog(skill, value);
+        
+    }
+
+    /** Stress Track Functions */
+    async checkTrack(event) {
+        const track = event.target.dataset.track;
+        const trackData = this.actor.system.tracks;
+        if (event.target.checked) {
+            trackData[track].filled++;
+        } else {
+            trackData[track].filled--;
+        }
+        await this.actor.update({["system.tracks"]: trackData});
+    }
+
+    trackRoll(event) {
+        const track = event.target.id;
+        const trackData = this.actor.system.tracks[track];
+        console.log(trackData);
+        const value = (trackData.boxes - trackData.filled);
+        this._showDiceRollDialog(track, value);
     }
 
     _calculateTracks() {
@@ -196,8 +223,8 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
 
         for(let key in this.actor.system.stunts) {
             const stunt = this.actor.system.stunts[key];
-            if (stunt.affectsTrack !== "") {
-                tracks[stunt.affectsTrack].boxes += stunt.modifier;
+            if (stunt.system.affectsTrack !== "" && stunt.system.affectsTrack !== "none") {
+                tracks[stunt.system.affectsTrack].boxes += stunt.system.modifier;
             }
         }
     }
@@ -213,6 +240,22 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
         dialog.render(true);
     }
 
+
+    async _addEquipment(item) {
+
+        let equipment = this.actor.system.equipment;
+        equipment[item._id] = item;
+        await this.actor.update({["system.equipment"]: equipment});
+    }
+
+    async _addStunt(item) {
+        let stunts = this.actor.system.stunts;
+        stunts[item._id] = item;
+        await this.actor.update({["system.stunts"]: stunts});
+    }
+
+
+    /** Drag Drop Methods */
     #createDragDropHandlers() {
 
         return this.options.dragDrop.map((d) => {
@@ -231,14 +274,6 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
         });
     }
 
-    async _addEquipment(item) {
-
-        let equipment = this.actor.system.equipment;
-        equipment[item._id] = item;
-        await this.actor.update({["system.equipment"]: equipment});
-    }
-
-    /** Drag Drop Methods */
     _canDragStart(selector) {
             return true;
     }

@@ -5,24 +5,30 @@ export default class sulRollDialog extends foundry.applications.api.HandlebarsAp
 
     constructor(actor, data) {
         super(actor, data);
+
         this.actor = actor;
         this.data = data;
-        /*this.label = data.label;
-        this.baseModifier = data.value;*/
+        this.tagfate = false;
+        this.tagfree = false;
+        this.modifier = 0;
+
+        console.log(this.data);
     }
 
     static DEFAULT_OPTIONS = {
         "tag": "form",
         "position": {
-            "width": 700
+            "height": 300,
+            "width": 400
         },
         "window": {
             "resizable": true
         },
         "form": {
-            "closeOnSubmit": false,
+            "closeOnSubmit": true,
             "submitOnChange": false
-        }
+        },
+        "classes": ["sul__roll-sheet"]
     }
 
     static PARTS = {
@@ -34,16 +40,33 @@ export default class sulRollDialog extends foundry.applications.api.HandlebarsAp
 
     async _onRender(context, options) {
 
+        const tagfate = this.element.querySelector("input[name='tagaspectfate']");
+        tagfate?.addEventListener("click", event => this.tagAspectFate());
+
         const makeRoll = this.element.querySelector(".makeroll");
         makeRoll?.addEventListener("click", event => this.rollDice(event));
     }
 
     async rollDice(event) {
 
+        if (this.tagFate) {
+            console.log("Reducing Fate Points");
+            const fp = this.actor.system.fatepoints--;
+            await this.actor.update({"system.fatepoints": fp});
+            this.actor.sheet.render(true);
+        }
         const sulR = new sulRoll(this.actor, this.data);
         const roll = await sulR.makeRoll();
-
-        //console.log(roll);
     }
 
+    tagAspectFate() {
+
+        if (this.tagFate) {
+            this.tagFate = false;
+        } else {
+            this.tagFate = true;
+        }
+    
+        this.data.taggedAspect = true;
+    }
 }

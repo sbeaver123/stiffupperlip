@@ -37,7 +37,6 @@ export default class sulRoll {
 
         const flavour = await foundry.applications.handlebars.renderTemplate("systems/stiffupperlip/templates/rollMessage.hbs", msgData);
         roll.toMessage({
-            //"flavor": `<h1>${this.data.label}</h1><h3>${roll.total} - ${rung}</h3>`,
             "flavor": flavour,
             "speaker": msg
         });
