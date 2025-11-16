@@ -18,6 +18,7 @@
 }
 .sul__wrapper {
   padding: 10px;
+  overflow-y: scroll;
 }
 .sul__row {
   display: flex;
@@ -255,7 +256,7 @@
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
   font-size: 1.3em;
-  width: 150px;
+  width: 20%;
   margin-right: 10px;
 }
 .sul__stunt-desc {
@@ -264,6 +265,10 @@
 }
 .sul__stunt-icons {
   margin-left: auto;
+  width: 7%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 }
 .sul__tracks {
   display: flex;

@@ -1,9 +1,9 @@
 
 export default class sulRoll {
 
-    constructor(actor, data) {
+    constructor(actor, rollData) {
         this.actor = actor;
-        this.data = data;
+        this.data = rollData;
         this.ladder = {
             "8":`${game.i18n.localize("SUL.ladder.tophole")}`,
             "7":`${game.i18n.localize("SUL.ladder.wizard")}`,
@@ -21,7 +21,10 @@ export default class sulRoll {
 
     async makeRoll() {
 
-        let r = new Roll(`4dF + ${this.data.value}`);
+        // Total dice modifier is skill level + any miscellaneous modifer + number of tagged aspects times two.
+        const value = parseInt(this.data.skillValue) + parseInt(this.data.modifier) + (this.data.taggedAspects*2);
+        
+        let r = new Roll(`4dF + ${value}`);
         let roll = await r.roll();
 
         let rung = this._getRung(roll.total);
@@ -30,7 +33,7 @@ export default class sulRoll {
         msg.alias = this.actor.name;
 
         const msgData = {
-            "label": this.data.label,
+            "label": this.data.skillName,
             "total": roll.total,
             "rung": rung
         }

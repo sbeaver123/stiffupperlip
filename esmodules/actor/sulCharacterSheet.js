@@ -1,5 +1,5 @@
 
-import sulRollDialog from "../sulRollDialog.js";
+import sulRollDialog from "../roll/sulRollDialog.js";
 import { sulStunt } from "../sulDataModel.js";
 import sulConstants from "../sulConstants.js";
 
@@ -19,7 +19,7 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
             "closeOnSubmit": false
         },
         "position": {
-            "width": 850,
+            "width": 875,
             "height": "auto"
         },
         "window": {
@@ -108,6 +108,8 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
         const skillrolls = this.element.querySelectorAll(".sul__skill-roll");
         skillrolls.forEach(sr => sr?.addEventListener("click", event => this.skillRoll(event)));
 
+        const stuntrolls = this.element.querySelectorAll(".sul__stunt-roll");
+        stuntrolls.forEach(sr => sr?.addEventListener("click", event => this.stuntRoll(event)));
 
         const trackboxes = this.element.querySelectorAll(".sul__track-box");
         trackboxes.forEach(tb => tb?.addEventListener("click", event => this.checkTrack(event)));
@@ -174,6 +176,12 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
         
     }
 
+    stuntRoll(event) {
+        const stuntId = event.target.id;
+        const stunt = this.actor.system.stunts[stuntId];
+        console.log(stunt);
+    }
+
     /** Stress Track Functions */
     async checkTrack(event) {
         const track = event.target.dataset.track;
@@ -220,6 +228,8 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
         } else if (fortitude > 0) {
             tracks.composure.boxes += 1;
         }
+
+        tracks.resources.boxes = this.actor.system.baseres;
 
         for(let key in this.actor.system.stunts) {
             const stunt = this.actor.system.stunts[key];
