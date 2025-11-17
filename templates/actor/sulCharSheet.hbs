@@ -47,7 +47,14 @@
             <span class="sul__panel-label">{{localize "SUL.equipment"}}</span>
             <div class="sul__equipment-list container container-drop">
                 {{#each system.equipment as |item idx|}}
-                <span>{{item.name}}</span>
+                <div class="sul__item-row">
+                    <div class="sul__item-name">{{item.name}}</div>
+                    <div class="sul__item-desc">{{{item.system.description}}}</div>
+                    <div class="sul__item-icons">
+                        <i id="{{idx}}" class="fas fa-edit sul__item-edit"></i>
+                        <i id="{{idx}}" class="fas fa-trash sul__item-delete"></i>
+                    </div>
+                </div>
                 {{/each}}
             </div>
         </div>    

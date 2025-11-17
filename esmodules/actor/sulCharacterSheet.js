@@ -98,6 +98,11 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
         const classSelect = this.element.querySelector("select[name='system.socclass']");
         classSelect?.addEventListener("change", event => this.changeSocialClass(event));
 
+        const delItem = this.element.querySelectorAll(".sul__item-delete");
+        delItem?.forEach(di => di?.addEventListener("click", event => this.deleteItem(event)));
+        const editItem = this.element.querySelectorAll(".sul__item-edit");
+        editItem?.forEach(ei => ei?.addEventListener("click", event => this.editItem(event)));
+
         const addStunt = this.element.querySelector(".sul__stunt-add");
         addStunt?.addEventListener("click", event => this.addStunt());
         const delStunt = this.element.querySelectorAll(".sul__stunt-delete");
@@ -134,6 +139,19 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
         await this.actor.update({"system.baseres": bres});
     }
 
+    /** Item Functions. */
+    async deleteItem(event) {
+        const itemKey = event.target.id;
+        await this.actor.update({[`system.equipment.-=${itemKey}`]: null});
+    }
+
+    async editItem(event) {
+        const itemKey = event.target.id;
+        let item = await fromUuid("Item." + itemKey);
+        item.sheet.render(true);
+    }
+
+
     /** Stunt Functions. */
     async addStunt() {
 
@@ -143,10 +161,7 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
 
         };
         
-        console.log(newstunt);
-
         let stunt = await Item.implementation.create(newstunt);
-        console.log(stunt);
         stunt.sheet.render(true);
     }
 
@@ -158,14 +173,9 @@ export class sulCharacterSheet extends foundry.applications.api.HandlebarsApplic
 
     async editStunt(event) {
 
-        console.log(event);
-        const stunts = this.actor.system.stunts;
+        //const stunts = this.actor.system.stunts;
         const stuntKey = event.target.id;
-        //let stunt = stunts[stuntKey];
-        console.log(stuntKey);
         let stunt = await fromUuid("Item." + stuntKey);
-
-        console.log(stunt);
         stunt.sheet.render(true);
     }
 

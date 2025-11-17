@@ -67,6 +67,31 @@
   flex-direction: column;
   min-height: 200px;
 }
+.sul__equipment-list .sul__item-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid grey;
+  padding-bottom: 2px;
+  margin-bottom: 10px;
+}
+.sul__equipment-list .sul__item-row .sul__item-name {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 1.3em;
+  width: 20%;
+  margin-right: 10px;
+}
+.sul__equipment-list .sul__item-row .sul__item-desc {
+  font-family: 'Times New Roman', Times, serif;
+}
+.sul__equipment-list .sul__item-row .sul__item-icons {
+  margin-left: auto;
+  width: 7%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
 .sul__header {
   display: flex;
   flex-direction: row;
